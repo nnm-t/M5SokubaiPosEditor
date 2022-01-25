@@ -4,10 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:M5SokubaiPosEditor"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" TitleCharacterCasing="Normal">
-    <Grid>
-
-    </Grid>
+    <mah:MetroWindow.DataContext>
+        <local:MainWindowViewModel />
+    </mah:MetroWindow.DataContext>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Button>
+                <StackPanel Orientation="Vertical">
+                    <icon:PackIconMaterial Kind="Folder" />
+                    <TextBlock Text="開く" />
+                </StackPanel>
+            </Button>
+            
+            <Button>
+                <StackPanel Orientation="Vertical">
+                    <icon:PackIconMaterial Kind="ContentSave" />
+                    <TextBlock Text="保存" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <ContentControl DataContext="{Binding GoodsData.Value}">
+            <ItemsControl ItemsSource="{Binding Goods}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="local:GoodsItemViewModel">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <UniformGrid Columns="2">
+                                    <TextBlock Text="品名" />
+                                    <TextBox Text="{Binding Name.Value}" />
+                                </UniformGrid>
+                                
+                                <UniformGrid Columns="2">
+                                    <TextBlock Text="価格" />
+                                    <TextBox Text="{Binding Price.Value}" />
+                                </UniformGrid>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="UUID" />
+                                
+                                <ItemsControl ItemsSource="{Binding Uuid}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ContentControl>
+    </StackPanel>
 </mah:MetroWindow>
