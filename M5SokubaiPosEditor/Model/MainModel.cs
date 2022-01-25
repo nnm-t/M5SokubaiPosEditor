@@ -19,8 +19,14 @@ public class MainModel : BindableBase
         Filter = DialogFilter,
         FilterIndex = 1
     };
-    
+
     private GoodsData? goodsData;
+
+    public GoodsData? GoodsData
+    {
+        get => goodsData;
+        set => SetProperty(ref goodsData, value);
+    }
 
     public async void OpenFile()
     {
@@ -34,12 +40,12 @@ public class MainModel : BindableBase
         using var sr = new StreamReader(openFileDialog.SafeFileName);
         
         string jsonText = await sr.ReadToEndAsync();
-        goodsData = GoodsData.Deserialize(jsonText);
+        GoodsData = GoodsData.Deserialize(jsonText);
     }
 
     public async void SaveFile()
     {
-        if (goodsData == null)
+        if (GoodsData == null)
         {
             return;
         }
@@ -53,7 +59,7 @@ public class MainModel : BindableBase
 
         await using var sw = new StreamWriter(saveFileDialog.SafeFileName);
 
-        string jsonText = goodsData!.Serialize();
+        string jsonText = GoodsData!.Serialize();
         await sw.WriteAsync(jsonText);
     }
 }

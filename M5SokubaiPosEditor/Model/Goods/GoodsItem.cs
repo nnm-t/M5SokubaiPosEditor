@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using Prism.Mvvm;
 
 namespace M5SokubaiPosEditor;
 
-public class GoodsItem
+public class GoodsItem : BindableBase
 {
     [JsonProperty(PropertyName = "name")]
     public string Name { get; set; }
@@ -15,5 +16,5 @@ public class GoodsItem
     public int Price { get; set; }
     
     [JsonProperty(PropertyName = "uuid")]
-    public List<byte> Uuid { get; set; }
+    public ObservableCollection<byte> Uuid { get; set; }
 }

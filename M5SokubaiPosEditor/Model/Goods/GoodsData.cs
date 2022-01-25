@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using Prism.Mvvm;
 
 namespace M5SokubaiPosEditor;
 
-public class GoodsData
+public class GoodsData : BindableBase
 {
     [JsonProperty(PropertyName = "goods")]
-    public List<GoodsItem> Goods { get; set; }
+    public ObservableCollection<GoodsItem> Goods { get; set; }
 
     public GoodsData()
     {
-        Goods = new List<GoodsItem>();
+        Goods = new ObservableCollection<GoodsItem>();
     }
 
     public static GoodsData? Deserialize(string jsonString)
