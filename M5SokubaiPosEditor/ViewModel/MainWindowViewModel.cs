@@ -16,8 +16,15 @@ public class MainWindowViewModel : BindableBase
     
     public ReactiveProperty<GoodsDataViewModel?> GoodsData { get; }
 
+    public ReactiveCommand OpenFileCommand => new ReactiveCommand();
+
+    public ReactiveCommand SaveFileCommand => new ReactiveCommand();
+
     public MainWindowViewModel()
     {
         GoodsData = mainModel.ObserveProperty(m => m.GoodsData).Select(data => new GoodsDataViewModel(data)).ToReactiveProperty();
+
+        OpenFileCommand.Subscribe(() => mainModel.OpenFile());
+        SaveFileCommand.Subscribe(() => mainModel.SaveFile());
     }
 }
