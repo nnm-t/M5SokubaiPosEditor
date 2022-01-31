@@ -20,7 +20,7 @@ public class MainModel : BindableBase
         FilterIndex = 1
     };
 
-    private GoodsData? goodsData;
+    private GoodsData? goodsData = new GoodsData();
 
     public GoodsData? GoodsData
     {

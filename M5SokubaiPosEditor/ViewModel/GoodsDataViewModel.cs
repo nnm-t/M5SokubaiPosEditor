@@ -1,6 +1,4 @@
-﻿using System.Reactive.Linq;
-using Reactive.Bindings;
-using Reactive.Bindings.Extensions;
+﻿using Reactive.Bindings;
 
 namespace M5SokubaiPosEditor;
 
